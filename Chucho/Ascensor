@@ -1,0 +1,62 @@
+package ascensor;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Ascensor {
+    private int pisoUsuario;
+    private int pisoAscensor;
+    private Random random = new Random();
+
+    public int getPisoAscensor() {
+        return pisoAscensor;
+    }
+
+    public void setPisoAscensor(int pisoAscensor) {
+        this.pisoAscensor = pisoAscensor;
+    }
+
+    public Random getRandom() {
+        return random;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    public Ascensor() {
+        this.pisoAscensor = pisoAscensor(); 
+    }
+
+    public int pisoAscensor() {
+        return random.nextInt(7) + 1; 
+    }
+
+    public int getPisoUsuario() {
+        return pisoUsuario;
+    }
+    
+    public String estadoAscensor(int pisoUsuario) {
+          int comparar = pisoAscensor - pisoUsuario;
+        if (comparar > 0) {
+            return "El ascensor está bajando.";
+        } else if (comparar < 0) {
+            return "El ascensor está subiendo.";
+        } else {
+            return "El ascensor está en el mismo piso que el usuario.";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Ascensor ascensor = new Ascensor(); 
+
+        System.out.println("El ascensor está en el piso " + ascensor.getPisoAscensor());
+
+        System.out.print("Ingrese en qué piso se encuentra el usuario: ");
+        int pisoUsuario = scanner.nextInt();
+        System.out.println(ascensor.estadoAscensor(pisoUsuario));
+
+    }
+
+    }
+
